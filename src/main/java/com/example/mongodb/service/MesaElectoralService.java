@@ -1,7 +1,6 @@
 package com.example.mongodb.service;
 
 import com.example.mongodb.domain.MesaElectoral;
-
 import java.util.List;
 
 public interface MesaElectoralService {

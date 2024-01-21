@@ -2,7 +2,6 @@ package com.example.mongodb.service;
 
 import com.example.mongodb.domain.MesaElectoral;
 import com.example.mongodb.repository.MesaElectoralPersistence;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
