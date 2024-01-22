@@ -3,7 +3,7 @@ package com.example.mongodb.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
+import com.example.mongodb.domain.MesaElectoral;
 import java.io.Serializable;
 
 @Document(collection = "curso")
@@ -17,7 +17,7 @@ public class Curso implements Serializable {
     private String nombre;
 
     @Field(name = "mesa_id")
-    private String mesaId;
+    private MesaElectoral mesaId;
 
     public String getId() {
         return id;
@@ -35,11 +35,11 @@ public class Curso implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getMesaId() {
+    public MesaElectoral getMesaId() {
         return mesaId;
     }
 
-    public void setMesaId(String mesaId) {
+    public void setMesaId(MesaElectoral mesaId) {
         this.mesaId = mesaId;
     }
 }
