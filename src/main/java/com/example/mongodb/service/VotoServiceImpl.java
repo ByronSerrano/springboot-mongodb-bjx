@@ -61,6 +61,22 @@ public class VotoServiceImpl implements VotoService {
 
         return votosPorCandidato;
     }
+    /*
+    @Override
+    public List<HashMap> obtenerVotosPorCandidatoYMesa() {
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.group("mesaElectoral.numMesa", "partido.candidato")
+                        .count().as("totalVotos")
+                        .first("mesaElectoral.numMesa").as("numMesa")
+                        .first("partido.candidato").as("candidato"),
+                Aggregation.project("numMesa", "candidato", "totalVotos")
+                        .andExclude("_id")
+        );
+
+        AggregationResults<HashMap> results = mongoTemplate.aggregate(aggregation, "voto", HashMap.class);
+        return results.getMappedResults();
+    }
+     */
 
     @Override
     public List<HashMap> obtenerVotosPorCandidatoYMesa() {
@@ -76,5 +92,6 @@ public class VotoServiceImpl implements VotoService {
         AggregationResults<HashMap> results = mongoTemplate.aggregate(aggregation, "voto", HashMap.class);
         return results.getMappedResults();
     }
+
 
 }

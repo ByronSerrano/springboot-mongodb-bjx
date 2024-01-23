@@ -73,11 +73,21 @@ public class VotoController {
     }
 
     //Total Votes per Candidate and Mesa
+    /*
     @GetMapping(value = "/votosPorCandidatoYMesa", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> obtenerVotosPorCandidatoYMesa() {
         List<HashMap> votosPorCandidatoYMesa = votoService.obtenerVotosPorCandidatoYMesa();
         return new ResponseEntity<>(votosPorCandidatoYMesa, HttpStatus.OK);
     }
+
+     */
+
+    @GetMapping(value = "/votosPorCandidatoYMesa", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> obtenerVotosPorCandidatoYMesa() {
+        List<HashMap> votosPorCandidatoYMesa = votoService.obtenerVotosPorCandidatoYMesa();
+        return new ResponseEntity<>(votosPorCandidatoYMesa, HttpStatus.OK);
+    }
+
 
 }
 
