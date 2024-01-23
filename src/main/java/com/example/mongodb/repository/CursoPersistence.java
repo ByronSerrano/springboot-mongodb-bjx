@@ -7,6 +7,5 @@ import com.example.mongodb.domain.Curso;
 public interface CursoPersistence extends MongoRepository<Curso, String> {
 
     List<Curso> findByNombre(String nombre);
-
 }
 
