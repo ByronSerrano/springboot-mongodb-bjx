@@ -13,6 +13,8 @@ public class Voto {
 
     private Partido partido;
 
+    private MesaElectoral mesaElectoral;
+
     private boolean votoNulo;
 
     // Constructores, getters y setters
@@ -39,6 +41,14 @@ public class Voto {
 
     public void setPartido(Partido partido) {
         this.partido = partido;
+    }
+
+    public MesaElectoral getMesaElectoral() {
+        return mesaElectoral;
+    }
+
+    public void setMesaElectoral(MesaElectoral mesaElectoral) {
+        this.mesaElectoral = mesaElectoral;
     }
 
     public boolean isVotoNulo() {

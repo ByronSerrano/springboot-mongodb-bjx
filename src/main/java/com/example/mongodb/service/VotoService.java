@@ -1,8 +1,11 @@
 package com.example.mongodb.service;
 
 import com.example.mongodb.domain.Voto;
-import java.util.Optional;
 
+import java.util.HashMap;
+import java.util.Optional;
+import java.util.Map;
+import java.util.List;
 public interface VotoService {
 
     Voto save(Voto voto);
@@ -13,6 +16,8 @@ public interface VotoService {
 
     void deleteById(String id);
 
-    // Puedes agregar más métodos según tus necesidades
+    Map<String, Long> obtenerVotosPorCandidato();
+
+    List<HashMap> obtenerVotosPorCandidatoYMesa();
 
 }

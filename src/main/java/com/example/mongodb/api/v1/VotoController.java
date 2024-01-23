@@ -1,6 +1,8 @@
 package com.example.mongodb.api.v1;
 
+import com.example.mongodb.domain.Estudiante;
 import com.example.mongodb.domain.Voto;
+import com.example.mongodb.service.EstudianteService;
 import com.example.mongodb.service.VotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/voto")
@@ -17,6 +21,9 @@ public class VotoController {
 
     @Autowired
     private VotoService votoService;
+
+    @Autowired
+    private EstudianteService estudianteService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> listar() {
@@ -29,8 +36,14 @@ public class VotoController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> guardar(@RequestBody Voto voto) {
         try {
-            Voto votoGuardado = votoService.save(voto);
-            return new ResponseEntity<>(votoGuardado, HttpStatus.CREATED);
+            //Change firmaAsistencia
+            Estudiante estudiante = voto.getEstudiante();
+            estudiante.setFirmaAsistencia(true);
+            //save in Estudiante
+            estudianteService.save(estudiante);
+            //save the Vote
+            Voto votoResult = votoService.save(voto);
+            return new ResponseEntity<>(votoResult, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -52,7 +65,19 @@ public class VotoController {
         return new ResponseEntity<>("Voto eliminado correctamente", HttpStatus.OK);
     }
 
-    // Puedes agregar más endpoints según tus necesidades
+    //Total Votes per Candidate
+    @GetMapping(value = "/votosPorCandidato", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> obtenerVotosPorCandidato() {
+        Map<String, Long> votosPorCandidato = votoService.obtenerVotosPorCandidato();
+        return new ResponseEntity<>(votosPorCandidato, HttpStatus.OK);
+    }
+
+    //Total Votes per Candidate and Mesa
+    @GetMapping(value = "/votosPorCandidatoYMesa", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> obtenerVotosPorCandidatoYMesa() {
+        List<HashMap> votosPorCandidatoYMesa = votoService.obtenerVotosPorCandidatoYMesa();
+        return new ResponseEntity<>(votosPorCandidatoYMesa, HttpStatus.OK);
+    }
 
 }
 

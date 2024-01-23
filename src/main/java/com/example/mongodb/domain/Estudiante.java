@@ -1,6 +1,7 @@
 package com.example.mongodb.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "estudiante")
 public class Estudiante {
@@ -10,6 +11,8 @@ public class Estudiante {
 
     private String nombres;
     private String email;
+
+    @Field()
     private Boolean firmaAsistencia;
     private Curso curso;
 
